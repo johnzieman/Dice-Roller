@@ -5,18 +5,18 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import com.example.diceroller.databinding.ActivityMainBinding
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    lateinit var imageView: ImageView
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val button: Button = findViewById(R.id.button)
-        button.setOnClickListener {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.button.setOnClickListener {
             generateRandomNumber()
         }
-        imageView = findViewById(R.id.imageView)
     }
 
     private fun generateRandomNumber() {
@@ -29,6 +29,6 @@ class MainActivity : AppCompatActivity() {
             6 -> R.drawable.dice_6
             else -> R.drawable.empty_dice
         }
-        imageView.setImageResource(image)
+        binding.imageView.setImageResource(image)
     }
 }
